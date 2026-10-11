@@ -10,9 +10,9 @@ principles, so you can move between keys instead of staying inside one fixed sca
 
 | Page | What it does |
 |---|---|
-| **Perform** | Mutes and transpose for every voice, five banks of eight animated faders (MIDI CC), and the scene launcher |
-| **Drum Sequencer** | Six tracks with independent loop lengths, ratchets and velocity patterns |
-| **Chord/Arp** | Chords and arpeggios on a Camelot-wheel layout, with an eight-stage tracker for progressions |
+| **Perform** | Mutes and transpose for every voice, three banks of eight animated faders (MIDI CC), and the scene launcher |
+| **Drum Sequencer** | Six tracks with independent loop lengths and ratchets |
+| **Chord/Arp** | Chords and arpeggios on a Camelot-wheel layout, an eight-stage tracker for progressions, and a procedural groove generator that shapes gate and accents for the whole instrument |
 | **Mono Sequencers** | Three melodic lines locked to the lead scale, up to eight pages of 16 steps each |
 
 The whole instrument saves to and recalls from 127 scene slots, quantised to the bar.
@@ -25,7 +25,7 @@ The whole instrument saves to and recalls from 127 scene slots, quantised to the
 
 ## Install
 
-1. Download **`monome_iii_c30_min.lua`**. This is the file that goes on the grid.
+1. Download **`monome_iii_c31_min.lua`**. This is the file that goes on the grid.
 2. Open [diii](https://monome.org/diii) in a browser that supports Web Serial and connect the grid.
 3. Upload the file and run it.
 
@@ -33,21 +33,32 @@ See the [iii documentation](https://monome.org/docs/iii/diii) for how to upload 
 set one to start automatically.
 
 Use the `_min` file. The script has to fit a transfer limit of about 32 KB, and only the
-minified build does. `monome_iii_c30.lua` is the same script with comments and readable names,
+minified build does. `monome_iii_c31.lua` is the same script with comments and readable names,
 for anyone who wants to read or change it.
+
+c31 sits only a few bytes under that limit. If the grid does not come up with c31 set to start
+automatically, run it by hand from diii, or use c30, which is kept here.
 
 ## Files
 
 | File | |
 |---|---|
-| `monome_iii_c30_min.lua` | **Current release** — flash this |
-| `monome_iii_c30.lua` | Readable source of the current release |
-| `monome_iii_c26*`, `c22*`, `c21*`, `*c11*` | Earlier releases, kept for reference |
+| `monome_iii_c31_min.lua` | **Current release** — flash this |
+| `monome_iii_c31.lua` | Readable source of the current release |
+| `monome_iii_c30*`, `c26*`, `c22*`, `c21*`, `*c11*` | Earlier releases, kept for reference |
 | `index.html` | The manual |
 
 ## Upgrading from an earlier build
 
-Scenes saved on earlier builds still load. Three things behave differently in c30:
+Scenes saved on earlier builds still load. New in c31:
+
+- The sixteen velocity patterns are replaced by a procedural groove on the Chord/Arp page. It is
+  off by default; older scenes come back with it off and their velocity-pattern choices ignored.
+- There are three fader banks instead of five. Fader banks 4 and 5 in older scenes are ignored.
+- After power-up, press a tier or archetype pad, or load a scene, before switching the
+  procedural groove on for the first time. Switching it on with nothing set can stop the script.
+
+Changed since c26 (these arrived in c30):
 
 - Writing a tracker stage now needs a chord held in the Playing Area.
 - Pad `(3,3)` of the Playing Area is C♯ major (3B). It used to repeat D♯.
